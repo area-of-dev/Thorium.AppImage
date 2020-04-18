@@ -42,4 +42,4 @@ tor-browser:
 	cp -r chrome-linux/* AppDir/opt/tor-browser
 	rm -f AppDir/opt/tor-browser/product_logo_48.png
 	cp AppDir/icon.svg AppDir/opt/tor-browser/product_logo_48.svg
-	rm -rf chrome-linux
+	rm -rf chrome-linux*

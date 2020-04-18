@@ -19,4 +19,4 @@ export LD_LIBRARY_PATH
 
 ${APPDIR}/opt/tor-proxy/tor &
 
-${APPDIR}/opt/tor-browser/chrome --proxy-server="socks://127.0.0.1:9050" --profile-directory=Tor-Browser $@ https://dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion
+${APPDIR}/opt/tor-browser/chrome --proxy-server="socks://127.0.0.1:9050" --profile-directory=Tor-Browser $@ http://5u56fjmxu63xcmbk.onion/
