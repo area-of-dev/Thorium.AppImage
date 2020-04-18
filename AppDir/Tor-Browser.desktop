@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Tor-Browser
+GenericName=Web Browser
+Comment=Tor Browser is +1 for privacy and −1 for mass surveillance
+Exec=AppRun %U
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=icon
+Categories=Network;WebBrowser;Security;
+StartupWMClass=Tor-Browser
+StartupNotify=true
