@@ -2,11 +2,11 @@
 
 AppImage for Tor + Chromium as a browser.
 
-# Build
+## How to build
 
 make
 
-# Run
+# How to run
 
 ./Tor-Chromium.AppImage
 
