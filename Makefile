@@ -1,6 +1,6 @@
 DESTINATION_BROWSER="chrome-linux.zip"
 
-SOURCE="https://dist.torproject.org/torbrowser/9.0.9/tor-browser-linux64-9.0.9_en-US.tar.xz"
+SOURCE="https://dist.torproject.org/torbrowser/9.0.10/tor-browser-linux64-9.0.10_en-US.tar.xz"
 DESTINATION_PROXY="build.tar.xz"
 OUTPUT="Tor-Chromium.AppImage"
 
