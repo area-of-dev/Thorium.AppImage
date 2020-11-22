@@ -1,22 +1,43 @@
 #!/usr/bin/env bash
+# Copyright 2020 Alex Woroschilow (alex.woroschilow@gmail.com)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+set -ex
 
-add_ld_library_path() {
-  if test -z "$LD_LIBRARY_PATH"
-  then
-    LD_LIBRARY_PATH="$1"
-  else
-    LD_LIBRARY_PATH="$1:$LD_LIBRARY_PATH"
-  fi
-}
+PATH=${PATH}:${APPDIR}/bin
+PATH=${PATH}:${APPDIR}/chromium
+PATH=${PATH}:${APPDIR}/proxy
+export PATH=${PATH}
 
-"$basedir/abicheck" >/dev/null 2>&1
+
+XDG_DATA_DIRS=${XDG_DATA_DIRS}:${APPDIR}/share
+export XDG_DATA_DIRS=${XDG_DATA_DIRS}
+
+
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${APPDIR}/lib
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${APPDIR}/lib64
+
+"${APPDIR}/proxy/abicheck" >/dev/null 2>&1
 if [ $? -ne 0 ]; then
-  add_ld_library_path "${APPDIR}/opt/tor-proxy/libstdc++/"
+  LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${APPDIR}/proxy/libstdc++/
 fi
-add_ld_library_path "${APPDIR}/opt/tor-proxy/"
-export LD_LIBRARY_PATH
+
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${APPDIR}/chromium
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${APPDIR}/proxy
+
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
 
 
-${APPDIR}/opt/tor-proxy/tor &
 
-${APPDIR}/opt/tor-browser/chrome --proxy-server="socks://127.0.0.1:9050" --profile-directory=Tor-Browser $@ http://5u56fjmxu63xcmbk.onion/
+
+${APPDIR}/proxy/tor &
+
+${APPDIR}/chromium/chrome --proxy-server="socks://127.0.0.1:9050" --profile-directory=Tor $@ http://5u56fjmxu63xcmbk.onion/
