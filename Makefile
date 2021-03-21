@@ -40,7 +40,7 @@ all: clean
 	wget --no-check-certificate --output-document=$(PWD)/build/build.rpm https://ftp.lysator.liu.se/pub/opensuse/distribution/leap/15.2/repo/oss/x86_64/libatspi0-2.34.0-lp152.2.4.x86_64.rpm
 	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
 
-	wget --output-document=${PWD}/build/build.tar.xz  https://dist.torproject.org/torbrowser/10.0.5/tor-browser-linux64-10.0.5_en-US.tar.xz
+	wget --output-document=${PWD}/build/build.tar.xz  https://dist.torproject.org/torbrowser/10.0.13/tor-browser-linux64-10.0.13_en-US.tar.xz
 	tar -xJvf ${PWD}/build/build.tar.xz -C ${PWD}/build
 	
 	cp --force --recursive ${PWD}/build/tor-browser*/Browser/abicheck $(PWD)/build/AppDir/proxy
