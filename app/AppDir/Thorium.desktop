@@ -1,12 +1,12 @@
 [Desktop Entry]
-Name=Tor-Chromium
-GenericName=Tor-Chromium
+Name=Thorium
+GenericName=Thorium
 Comment=Tor Browser is +1 for privacy and −1 for mass surveillance
 Exec=AppRun %U
 Terminal=false
 X-MultipleArgs=false
 Type=Application
-Icon=icon
+Icon=thorium
 Categories=Network;WebBrowser;Security;
-StartupWMClass=Tor-Chromium
+StartupWMClass=Thorium
 StartupNotify=true
