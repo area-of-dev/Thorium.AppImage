@@ -1,4 +1,4 @@
-# Tor-Browser.AppImage
+# Thorium.AppImage
 
 AppImage for Tor + Chromium as a browser.
 
@@ -8,7 +8,7 @@ make
 
 # How to run
 
-./Tor-Chromium.AppImage
+./app/Thorium.AppImage
 
 
-![Screenshot](https://raw.githubusercontent.com/area-of-dev/Tor-Browser.AppImage/master/screenshots/Screenshot_20200418_134504.png)
+![Screenshot](https://raw.githubusercontent.com/area-of-dev/Thorium.AppImage/master/screenshots/Screenshot_20200418_134504.png)
