@@ -13,12 +13,15 @@ version: '3.7'
 
 services:
     appimage:
-        cap_drop:
-            - SYS_ADMIN
-        container_name: ${CID}
         working_dir: /root
         privileged: true
         build:
             context: app/docker
+            args:
+                TOKEN: ${TOKEN}
+        environment:
+            TOKEN: ${TOKEN}
+        cap_drop:
+            - SYS_ADMIN
         volumes:
             - ./app:/root:cached
