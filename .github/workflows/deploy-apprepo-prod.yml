@@ -44,12 +44,14 @@ jobs:
           docker-compose -f docker-compose.yaml run appimage /bin/sh -c \
               '/root/bin/Apprepo.AppImage upload /root/`ls /root/ | grep AppImage | head -n 1` --version-description=`date +"%d-%m-%Y"` --version-token=${TOKEN} --version-name="latest" --version-skip-check '
 
-      - name: build artifact
-        run: |
-          cp --force ./app/*.AppImage ./dist/
-
-      - name: build artifact
-        uses: actions/upload-artifact@v3
+      - name: release latest build
+        uses: andelf/nightly-release@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ github.event.repository.name }}
-          path: "./dist/*.AppImage"
+          tag_name: latest
+          name: ${{ github.event.repository.name }} latest build'
+          body: 'This repo provides the AppImage build only. To get the application release notes please visit the home page of the app itself.'
+          prerelease: true
+          files: |
+            ./app/*.AppImage
