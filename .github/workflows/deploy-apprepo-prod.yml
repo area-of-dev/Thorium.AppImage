@@ -4,7 +4,8 @@ on:
     branches:
       - main
   workflow_dispatch: ~
-
+  schedule:
+    - cron: "0 0 1-7,15-21 * 3"
 env:
   DOCKER_BUILDKIT: 1
   AUTHENTICATION: "${{ secrets.PROD_AUTHENTICATION }}"
@@ -21,16 +22,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: preparation
-        run: |
+      # - name: preparation
+      #   run: |
 
-          mkdir --parents ./dist
-          mkdir --parents ./app/.config/apprepo
+      #     mkdir --parents ./dist
+      #     mkdir --parents ./app/.config/apprepo
 
-          echo "[user]"                    >  ./app/.config/apprepo/default.conf
-          echo "token = ${AUTHENTICATION}" >> ./app/.config/apprepo/default.conf
+      #     echo "[user]"                    >  ./app/.config/apprepo/default.conf
+      #     echo "token = ${AUTHENTICATION}" >> ./app/.config/apprepo/default.conf
           
-          echo "${{ github.event.repository.name }}"
+      #     echo "${{ github.event.repository.name }}"
 
       - name: build
         run: |
@@ -38,11 +39,11 @@ jobs:
           docker-compose -f docker-compose.yaml build --no-cache --progress=plain
           docker-compose -f docker-compose.yaml run appimage make all
 
-      - name: deploy
-        run: |
+      # - name: deploy
+      #   run: |
 
-          docker-compose -f docker-compose.yaml run appimage /bin/sh -c \
-              '/root/bin/Apprepo.AppImage upload /root/`ls /root/ | grep AppImage | head -n 1` --version-description=`date +"%d-%m-%Y"` --version-token=${TOKEN} --version-name="latest" --version-skip-check '
+      #     docker-compose -f docker-compose.yaml run appimage /bin/sh -c \
+      #         '/root/bin/Apprepo.AppImage upload /root/`ls /root/ | grep AppImage | head -n 1` --version-description=`date +"%d-%m-%Y"` --version-token=${TOKEN} --version-name="latest" --version-skip-check '
 
       - name: release latest build
         uses: andelf/nightly-release@main
