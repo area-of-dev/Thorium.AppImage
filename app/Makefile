@@ -41,7 +41,7 @@ all:  clean init
 	wget --output-document=${PWD}/build/build.zip  https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F$(REVISION)%2Fchrome-linux.zip?alt=media
 	unzip $(PWD)/build/build.zip -d $(PWD)/build
 
-	wget --output-document=$(PWD)/build/build.tar.xz  https://dist.torproject.org/torbrowser/12.0.1/tor-browser-linux64-12.0.1_ALL.tar.xz
+	wget --output-document=$(PWD)/build/build.tar.xz  https://dist.torproject.org/torbrowser/12.0.2/tor-browser-linux64-12.0.2_ALL.tar.xz
 	tar -xJvf $(PWD)/build/build.tar.xz -C $(PWD)/build
 	
 	cp --force --recursive $(PWD)/build/tor-browser*/Browser/abicheck           $(PWD)/build/Boilerplate.AppDir/proxy
